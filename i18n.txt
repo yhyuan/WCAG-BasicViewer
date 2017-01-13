@@ -1,0 +1,2 @@
+1) Use index_xx.html to override the index.html. xx is language code, e.g. en for English and fr for French.
+2) Use js\dijit\templates\instructions.xx.html to override js\dijit\templates\instructions.html. xx is the language code. 

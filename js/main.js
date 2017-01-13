@@ -14,40 +14,40 @@
  | limitations under the License.
  */
 
-define(["dojo/ready", 
+define(["dojo/ready",
     "dojo/aspect", "dijit/registry",
-    "dojo/json", "dojo/_base/array", "dojo/_base/Color", "dojo/_base/declare", 
-    "dojo/_base/lang", "dojo/dom", "dojo/dom-geometry", "dojo/dom-attr", "dojo/dom-class", 
-    "dojo/dom-construct", "dojo/dom-style", "dojo/on", "dojo/Deferred", "dojo/promise/all", 
-    "dojo/query", "dijit/Menu", "dijit/CheckedMenuItem", "application/toolbar", 
-    "application/has-config", "esri/arcgis/utils", "esri/lang", 
+    "dojo/json", "dojo/_base/array", "dojo/_base/Color", "dojo/_base/declare",
+    "dojo/_base/lang", "dojo/dom", "dojo/dom-geometry", "dojo/dom-attr", "dojo/dom-class",
+    "dojo/dom-construct", "dojo/dom-style", "dojo/on", "dojo/Deferred", "dojo/promise/all",
+    "dojo/query", "dijit/Menu", "dijit/CheckedMenuItem", "application/toolbar",
+    "application/has-config", "esri/arcgis/utils", "esri/lang",
     "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dijit/focus",
-    "esri/tasks/query", 
-    "esri/dijit/HomeButton", "esri/dijit/LocateButton", 
-    "esri/dijit/Legend", "esri/dijit/BasemapGallery", 
-    "esri/dijit/Measurement", "esri/dijit/OverviewMap", "esri/geometry/Extent", 
-    "esri/layers/FeatureLayer", "application/NavToolBar/NavToolBar", 
-    "application/FeatureList", "application/Filters/Filters", "application/TableOfContents", 
+    "esri/tasks/query",
+    "esri/dijit/HomeButton", "esri/dijit/LocateButton",
+    "esri/dijit/Legend", "esri/dijit/BasemapGallery",
+    "esri/dijit/Measurement", "esri/dijit/OverviewMap", "esri/geometry/Extent",
+    "esri/layers/FeatureLayer", "application/NavToolBar/NavToolBar",
+    "application/FeatureList", "application/Filters/Filters", "application/TableOfContents",
     "application/ShareDialog", //"application/SearchSources",
     "esri/symbols/SimpleMarkerSymbol", "esri/symbols/PictureMarkerSymbol", "esri/graphic",
     "esri/dijit/InfoWindow",
     "dojo/text!application/dijit/templates/instructions.html",
-    "dojo/NodeList-dom", "dojo/NodeList-traverse"], 
+    "dojo/NodeList-dom", "dojo/NodeList-traverse"],
     function (
-    ready, 
+    ready,
     aspect, registry,
-    JSON, array, Color, declare, 
-    lang, dom, domGeometry, domAttr, domClass, 
-    domConstruct, domStyle, on, Deferred, all, 
-    query, Menu, CheckedMenuItem, Toolbar, 
-    has, arcgisUtils, esriLang, 
+    JSON, array, Color, declare,
+    lang, dom, domGeometry, domAttr, domClass,
+    domConstruct, domStyle, on, Deferred, all,
+    query, Menu, CheckedMenuItem, Toolbar,
+    has, arcgisUtils, esriLang,
     BorderContainer, ContentPane, focusUtil,
     Query,
-    HomeButton, LocateButton, 
-    Legend, BasemapGallery, 
-    Measurement, OverviewMap, Extent, 
+    HomeButton, LocateButton,
+    Legend, BasemapGallery,
+    Measurement, OverviewMap, Extent,
     FeatureLayer, NavToolBar,
-    FeatureList, Filters, TableOfContents, 
+    FeatureList, Filters, TableOfContents,
     ShareDialog, //SearchSources,
     SimpleMarkerSymbol, PictureMarkerSymbol, Graphic,
     InfoWindow,
@@ -64,7 +64,7 @@ define(["dojo/ready",
         editor: null,
         editableLayers: null,
         timeFormats: ["shortDateShortTime", "shortDateLEShortTime", "shortDateShortTime24", "shortDateLEShortTime24", "shortDateLongTime", "shortDateLELongTime", "shortDateLongTime24", "shortDateLELongTime24"],
-        
+
         startup: function (config) {
             // config will contain application and user defined info for the template such as i18n strings, the web map id
             // and application id and any url parameters and any application specific configuration information.
@@ -138,13 +138,13 @@ define(["dojo/ready",
 
             query(".esriSimpleSlider").style("backgroundColor", this.theme.toString());
             // remove loading class from body
-            
+
             domClass.remove(document.body, "app-loading");
             on(window, "orientationchange", lang.hitch(this, this._adjustPopupSize));
             this._adjustPopupSize();
 
             var _map = this.map;
-                        
+
             // if (true || !has("navigation")) {
             //     zoomSlider = dojo.query("#mapDiv_zoom_slider")[0];
 
@@ -184,7 +184,7 @@ define(["dojo/ready",
             //             id: "panelHome",
             //             className: "esriSimpleSliderHomeButton borderBottom",
             //             innerHTML: "<div id='btnHome'></div>"
-            //         }); 
+            //         });
 
             //         domConstruct.place(panelHome, dojo.query(".esriSimpleSliderIncrementButton")[0], "after");
 
@@ -221,7 +221,7 @@ define(["dojo/ready",
                 if(!dojo.getAttr(images[i], 'alt'))
                 {
                     dojo.setAttr(images[i], 'alt', '');
-                } 
+                }
             }
 
             dojo.setAttr(node, "role", "dialog");
@@ -276,11 +276,11 @@ define(["dojo/ready",
         _createUI: function () {
             var borderContainer = new BorderContainer({
                 design:'sidebar',
-                gutters:'true', 
+                gutters:'true',
                 liveSplitters:'false',
                 id:"borderContainer"
             });
-             
+
             var contentPaneLeft = new ContentPane({
                 region: "leading",
                 splitter: 'true',
@@ -289,7 +289,7 @@ define(["dojo/ready",
                 class: "splitterContent",
             });
             borderContainer.addChild(contentPaneLeft);
-              
+
             var contentPaneRight = new ContentPane({
                 region: "center",
                 splitter: "true",
@@ -305,7 +305,7 @@ define(["dojo/ready",
                 this.map.resize();
                 this.map.reposition();
             }));
-            
+
             domStyle.set("panelPages", "visibility", "hidden");
             //Add tools to the toolbar. The tools are listed in the defaults.js file
             var toolbar = new Toolbar(this.config);
@@ -363,9 +363,9 @@ define(["dojo/ready",
                             break;
                     }
                 }
-    
+
                 all(toolList).then(lang.hitch(this, function (results) {
-                    
+
                     //If all the results are false and locate and home are also false we can hide the toolbar
                     var tools = array.some(results, function (r) {
                         return r;
@@ -387,7 +387,7 @@ define(["dojo/ready",
 
                     //Now that all the tools have been added to the toolbar we can add page naviagation
                     //to the toolbar panel, update the color theme and set the active tool.
-                    
+
                     this._updateTheme();
 
                     toolbar._activateDefautTool();
@@ -455,7 +455,7 @@ define(["dojo/ready",
                     default:
                         break;
                 }
-                
+
             });
 
             on(document.body, 'keyup', function(event) {
@@ -503,7 +503,7 @@ define(["dojo/ready",
                     style:'left:60%; top:-75%;'
                 }, dom.byId('panelBottom'));
             }
-            
+
             query('.skip #skip-tools')[0].addEventListener('click', function (e) { skipToTools(); });
             query('.skip #skip-search')[0].addEventListener('click', function (e) { skipToSearch(); });
             query('.skip #skip-content')[0].addEventListener('click', function (e) { skipToContent(); });
@@ -555,7 +555,7 @@ define(["dojo/ready",
                     activeTool = activeTool[0].childNodes[0];
                     activeTool.click();
                 }
-                dom.byId('instructionsDiv').childNodes[0].focus();            
+                dom.byId('instructionsDiv').childNodes[0].focus();
             };
 
             skipToFeature = function() {
@@ -575,14 +575,15 @@ define(["dojo/ready",
                 var featuresDiv = toolbar.createTool(tool, "", "reload1.gif", "featureSelected");
 
                 var layers = this.config.response.itemInfo.itemData.operationalLayers;
-                
+
                 featureList = new FeatureList({
                     map: this.map,
                     layers: layers,
                     toolbar: toolbar,
                     animatedMarker:  this.config.animated_marker,
                     markerImage: this.config.marker,
-                    markerSize: this.config.marker_size
+                    markerSize: this.config.marker_size,
+                    i18n: this.config.i18n
                 }, featuresDiv);
                 featureList.startup();
 
@@ -591,27 +592,28 @@ define(["dojo/ready",
                 // }));
 
                 deferred.resolve(true);
-            } 
+            }
             else {
                 // window._prevSelected = null;
                 deferred.resolve(false);
             }
-        
+
             return deferred.promise;
         },
-        
+
         _addNavigation: function (tool, oldNaviagationToolBar) {
             var deferred = new Deferred();
             var navToolBar = domConstruct.create("div", {
                 id: "newNaviagationToolBar",
             });
-            
+
             nav = new NavToolBar({
                 map: this.map,
                 navToolBar: oldNaviagationToolBar,
                 iconColor: this.config.icons,
                 newIcons: this.config.new_icons?'.new':'',
                 zoomColor: this.focusColor,
+				        i18n: this.config.i18n
             }, navToolBar);
             nav.startup();
             deferred.resolve(true);
@@ -625,7 +627,7 @@ define(["dojo/ready",
                 var filterDiv = toolbar.createTool(tool, "", "", "somefilters");
 
                 var layers = this.config.response.itemInfo.itemData.operationalLayers;
-                
+
                 filter = new Filters({
                     map: this.map,
                     layers: layers,
@@ -638,15 +640,15 @@ define(["dojo/ready",
                 // }));
 
                 deferred.resolve(true);
-            } 
+            }
             else {
                 // window._prevSelected = null;
                 deferred.resolve(false);
             }
-        
+
             return deferred.promise;
         },
-        
+
         _addBasemapGallery: function (tool, toolbar) {
             var deferred = new Deferred();
             if (has("basemap")) {
@@ -681,13 +683,13 @@ define(["dojo/ready",
                         domAttr.remove(labelNode.firstChild, "title");
                         dojo.place(labelNode, aNode, "last");
                         //domStyle.set(labelNode, "width", img.width);
-                        //domAttr.set(node, "tabindex", 0);   
-                        domAttr.set(labelNode, "tabindex", 0);   
+                        //domAttr.set(node, "tabindex", 0);
+                        domAttr.set(labelNode, "tabindex", 0);
                         //on(aNode, "focus", function() { node.focus();});
                         on(img, "click", function() { node.focus();});
                         on(node,"keydown", function(ev) {
                             if(ev.key === "Enter" || ev.key === "Space") {
-                                aNode.click();  
+                                aNode.click();
                             } else if(ev.key === "Tab" && !ev.shiftKey) {
                                 if(node.nextElementSibling.nodeName != "BR") {
                                     node.nextElementSibling.focus();
@@ -786,9 +788,9 @@ define(["dojo/ready",
             var deferred = new Deferred();
             if (!has("instructions")) {
                deferred.resolve(false);
-            } 
-            else 
-            { 
+            }
+            else
+            {
                 if(!has("details"))
                 {
                     var instructionsDiv = toolbar.createTool(tool);
@@ -800,7 +802,7 @@ define(["dojo/ready",
 
                     var instructionsBtn = dojo.query("#toolButton_instructions")[0];
                     domClass.add(instructionsBtn, "panelToolDefault");
-                } 
+                }
                 else {
                     deferedDetails.then(function(r) {
                         var instructionsDiv = domConstruct.create('div',{
@@ -1035,7 +1037,7 @@ define(["dojo/ready",
                             domAttr.set(messages[m],'tabindex',0);
                         }
                     };
-                    
+
                     on(this.map, "extent-change", lang.hitch(this, fixLegend));
                     // dojo.setAttr(legendDiv, 'tabindex', 0);
 
@@ -1076,7 +1078,7 @@ define(["dojo/ready",
                 for(i = 0; i< esriMeasurementTableHeaders.length; i++)
                 {
                     esriMeasurementTableHeader = esriMeasurementTableHeaders[i];
-                    //alert(esriMeasurementTableHeader.innerHTML); 
+                    //alert(esriMeasurementTableHeader.innerHTML);
                     var newHeader = document.createElement('th');
                     newHeader.innerHTML = esriMeasurementTableHeader.innerHTML;
                     colspan = esriMeasurementTableHeader.getAttribute('colspan');
@@ -1090,7 +1092,7 @@ define(["dojo/ready",
                 var AccessAuditMarkers = esriMeasurementResultTable.querySelectorAll('img');
                 for(i = 0; i< AccessAuditMarkers.length; i++)
                 {
-                     AccessAuditMarkers[i].setAttribute('Alt','');  
+                     AccessAuditMarkers[i].setAttribute('Alt','');
                 }
 
                 areaIconNode = measureDiv.querySelector('.areaIcon');
@@ -1122,7 +1124,7 @@ define(["dojo/ready",
                 var panelHeight = this.map.height;
 
                 this.createOverviewMap(ovMapDiv, panelHeight);
-                
+
                 on(this.map, "layer-add", lang.hitch(this, function (args) {
                     //delete and re-create the overview map if the basemap gallery changes
                     if (args.layer.hasOwnProperty("_basemapGalleryLayerType") && args.layer._basemapGalleryLayerType === "basemap") {
@@ -1407,7 +1409,7 @@ define(["dojo/ready",
             if (has("share")) {
 
                 var shareDiv = domConstruct.create('div', {class:'pageBody'},toolbar.createTool(tool));//);
-                
+
                 var shareDialog = new ShareDialog({
                     bitlyLogin: this.config.bitlyLogin,
                     bitlyKey: this.config.bitlyKey,
@@ -1461,8 +1463,8 @@ define(["dojo/ready",
             }));
 
             //Add the location search widget
-            require(["application/has-config!search?esri/dijit/Search", 
-                "application/has-config!search?esri/tasks/locator"], 
+            require(["application/has-config!search?esri/dijit/Search",
+                "application/has-config!search?esri/tasks/locator"],
                 lang.hitch(this, function (Search, Locator) {
                 if (!Search && !Locator) {
                     //add class so we know we don't have to hide title since search isn't visible
@@ -1483,7 +1485,7 @@ define(["dojo/ready",
                 }, "mapDiv"));
                 var defaultSources = [];
 
-                //setup geocoders defined in common config 
+                //setup geocoders defined in common config
                 if (this.config.helperServices.geocode && this.config.locationSearch) {
                     var geocoders = lang.clone(this.config.helperServices.geocode);
                     array.forEach(geocoders, lang.hitch(this, function (geocoder) {
@@ -1506,7 +1508,7 @@ define(["dojo/ready",
                             defaultSources.push(geocoder);
                         } else if (esriLang.isDefined(geocoder.singleLineFieldName)) {
 
-                            //Add geocoders with a singleLineFieldName defined 
+                            //Add geocoders with a singleLineFieldName defined
                             geocoder.locator = new Locator(geocoder.url);
 
                             defaultSources.push(geocoder);
@@ -1514,7 +1516,7 @@ define(["dojo/ready",
                     }));
                 }
 
-                //add configured search layers to the search widget 
+                //add configured search layers to the search widget
                 var configuredSearchLayers = (this.config.searchLayers instanceof Array) ? this.config.searchLayers : JSON.parse(this.config.searchLayers);
 
                 array.forEach(configuredSearchLayers, lang.hitch(this, function (layer) {
@@ -1537,7 +1539,7 @@ define(["dojo/ready",
                     }
                 }));
 
-                //Add search layers defined on the web map item 
+                //Add search layers defined on the web map item
                 if (this.config.response.itemInfo.itemData && this.config.response.itemInfo.itemData.applicationProperties && this.config.response.itemInfo.itemData.applicationProperties.viewing && this.config.response.itemInfo.itemData.applicationProperties.viewing.search) {
                     var searchOptions = this.config.response.itemInfo.itemData.applicationProperties.viewing.search;
 
@@ -1588,11 +1590,11 @@ define(["dojo/ready",
 
                 if (search && search.domNode) {
                     domConstruct.place(search.domNode, "panelGeocoder");
-            
+
                     esriIconDownArrowNode = dojo.query(".esriIconDownArrow")[0];
                     domClass.remove(esriIconDownArrowNode, "esriIconDownArrow");
 
-                    esriIconDownArrowNode.innerHTML = 
+                    esriIconDownArrowNode.innerHTML =
                         '<img src="images\\downArrow.png" alt="Search in" width="20" height="20">';
 
                     searchInput = dojo.query(".searchInput")[0];
@@ -1600,12 +1602,12 @@ define(["dojo/ready",
 
                     esriIconZoomNode = dojo.query(".esriIconZoom")[0];
                     domClass.remove(esriIconZoomNode, "esriIconZoom");
-                    esriIconZoomNode.innerHTML = 
+                    esriIconZoomNode.innerHTML =
                         '<img src="images\\searchZoom.png" alt="Search" width="20" height="20">';
 
-                    esriIconCloseNode = dojo.query(".esriIconClose")[0]; 
+                    esriIconCloseNode = dojo.query(".esriIconClose")[0];
                     domClass.remove(esriIconCloseNode, "esriIconClose");
-                    esriIconCloseNode.innerHTML = 
+                    esriIconCloseNode.innerHTML =
                         '<img src="images\\searchClear.png" alt="Clear search" width="16" height="16">';
 
                 }
@@ -1615,7 +1617,7 @@ define(["dojo/ready",
             //create the tools
             this._createUI();
         },
- 
+
         _updateTheme: function () {
 
             //Set the background color using the configured theme value
@@ -1667,7 +1669,7 @@ define(["dojo/ready",
                             rule.style.outlineColor = this.focusColor;
                         }
                         //active
-                        if(rule.selectorText.indexOf('.activeMarker') >= 0 || 
+                        if(rule.selectorText.indexOf('.activeMarker') >= 0 ||
                             rule.selectorText.indexOf('dijitSplitterThumb') >= 0) {
                             //rule.style.backgroundColor = this.activeColor;
                             rule.style.outlineStyle = 'none';
@@ -1688,7 +1690,7 @@ define(["dojo/ready",
                 this.mapExt = this.map.extent;
             }
         },
- 
+
         _adjustPopupSize: function () {
             if (!this.map) {
                 return;
@@ -1707,13 +1709,13 @@ define(["dojo/ready",
             }
             this.map.infoWindow.resize(width, height);
         },
- 
+
         _createWebMap: function (itemInfo) {
 
             window.config = this.config;
 
             var options = {};
-            //specify center and zoom if provided as url params 
+            //specify center and zoom if provided as url params
             if (this.config.level) {
                 options.zoom = this.config.level;
             }
@@ -1736,7 +1738,7 @@ define(["dojo/ready",
 
                 var mapDiv = document.querySelector('#mapDiv');
                 on(mapDiv, 'keydown', lang.hitch(this, function(evn){
-                    if(!document.querySelector(':focus') || document.querySelector(':focus').id !== "mapDiv") return; 
+                    if(!document.querySelector(':focus') || document.querySelector(':focus').id !== "mapDiv") return;
                     switch(evn.keyCode)  {
                         case 40 : //down
                             this.map._fixedPan(0, this.map.height * 0.0135);
@@ -1781,7 +1783,7 @@ define(["dojo/ready",
                     }
                 }));
                 on(mapDiv, 'keypress', lang.hitch(this, function(evn){
-                  if(!document.querySelector(':focus') || document.querySelector(':focus').id !== "mapDiv") return;  
+                  if(!document.querySelector(':focus') || document.querySelector(':focus').id !== "mapDiv") return;
                   evn.preventDefault();
                   evn.stopPropagation();
                   if((evn.keyCode === 43) && !evn.ctrlKey && !evn.altKey)  // Shift-'+'
@@ -1809,7 +1811,7 @@ define(["dojo/ready",
                     var altMapText = esriLang.stripTags(this.config.altMapText);
                     domAttr.set(this.map.container, "aria-label", altMapText);
                 }
-                
+
                 //Add a logo if provided
                 if (this.config.logo) {
                     var altText = this.config.logoAltText;
@@ -1826,7 +1828,7 @@ define(["dojo/ready",
                 //this.map = response.map;
                 //Set the title - use the config value if provided.
                 //var title = (this.config.title === null) ? response.itemInfo.item.title : this.config.title;
-          
+
                 //if title is short make title area smaller
                 if (title && title.length && title.length === 0) {
                     domClass.add("panelTop", "smallerTitle");
@@ -1851,7 +1853,7 @@ define(["dojo/ready",
                     this.map.setExtent(this.initExt);
                 }
                 window.initExt = this.initExt = this.map.extent;
-                
+
                 // // ???
                 // if(!has("navigation")) {
                 //     on.once(this.map, "extent-change", lang.hitch(this, function() {

@@ -1,29 +1,29 @@
-define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "esri/kernel", 
-    "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dojo/on", 
-    "dojo/Deferred", "dojo/promise/all", "dojo/query", 
+define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "esri/kernel",
+    "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dojo/on",
+    "dojo/Deferred", "dojo/promise/all", "dojo/query",
     "esri/tasks/query", "esri/tasks/QueryTask",
-    "dojo/text!application/dijit/templates/FeatureList.html", 
-    "dojo/dom", "dojo/dom-class", "dojo/dom-attr", "dojo/dom-style", "dojo/dom-construct", "dojo/_base/event", 
-    "dojo/string", 
+    "dojo/text!application/dijit/templates/FeatureList.html",
+    "dojo/dom", "dojo/dom-class", "dojo/dom-attr", "dojo/dom-style", "dojo/dom-construct", "dojo/_base/event",
+    "dojo/string",
     "dojo/text!application/dijit/templates/FeatureListTemplate.html",
-    "esri/symbols/SimpleMarkerSymbol", "esri/symbols/PictureMarkerSymbol", 
-    "esri/symbols/CartographicLineSymbol", 
+    "esri/symbols/SimpleMarkerSymbol", "esri/symbols/PictureMarkerSymbol",
+    "esri/symbols/CartographicLineSymbol",
     "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol",
-    "esri/graphic", "esri/Color", 
+    "esri/graphic", "esri/Color",
     "esri/dijit/InfoWindow",
     "dojo/NodeList-dom", "dojo/NodeList-traverse"
-    
+
     ], function (
         Evented, declare, lang, has, esriNS,
-        _WidgetBase, _TemplatedMixin, on, 
+        _WidgetBase, _TemplatedMixin, on,
         Deferred, all, query,
         Query, QueryTask,
-        FeatureList, 
-        dom, domClass, domAttr, domStyle, domConstruct, event, 
+        FeatureList,
+        dom, domClass, domAttr, domStyle, domConstruct, event,
         string,
         listTemplate,
-        SimpleMarkerSymbol, PictureMarkerSymbol, 
-        CartographicLineSymbol, 
+        SimpleMarkerSymbol, PictureMarkerSymbol,
+        CartographicLineSymbol,
         SimpleFillSymbol, SimpleLineSymbol,
         Graphic, Color,
         InfoWindow
@@ -46,7 +46,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
             this.set("map", defaults.map);
             var Layers = this._getLayers(defaults.layers);
             this.set("Layers", Layers);
-
+			      this.i18n = options.i18n;
             window._this = this;
 
             if(options.animatedMarker) {
@@ -116,7 +116,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
 
         FocusDetails: function() {
             if(!this._isVisible()) return;
-            
+
             var details = this.domNode.querySelector('.showAttr');
             if(details) {
                 var page = query(details).closest('.borderLi')[0];
@@ -162,7 +162,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                                     var fieldName = '${'+pField.fieldName+'}';
                                     var fieldValue = fieldName;
                                     if(pField.format)
-                                    { 
+                                    {
                                         if(pField.format.dateFormat) {
                                             fieldValue='FORMAT_DATE('+fieldName+',"'+pField.format.dateFormat+'")';
                                         }
@@ -212,7 +212,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                 deferred.resolve(true);
                 }
             );
-            return deferred.promise; 
+            return deferred.promise;
         },
 
         _reloadList : function(ext) {
@@ -253,7 +253,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                         task : new QueryTask(this.map._layers[layer.id].url),
                         query : _query
                     });
-                }   
+                }
             }
 
             window.featurePanZoom = function(el, panOnly) {
@@ -264,7 +264,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
 
                 q = new Query();
                 q.where = objectIdFieldName+"="+fid;
-                q.outFields = [objectIdFieldName];                    
+                q.outFields = [objectIdFieldName];
                 q.returnGeometry = true;
                 r.task.execute(q).then(function(ev) {
                     var geometry = ev.features[0].geometry;
@@ -296,7 +296,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                 }
             };
 
-            window._prevSelected = null;                
+            window._prevSelected = null;
             window.featureExpand = function(checkBox, restore) {
                 if(_prevSelected && !restore) {
                     dojo.query('.featureItem_'+_prevSelected).forEach(function(e) {
@@ -318,7 +318,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                 layer._map.graphics.clear();
 
                 lang.hitch(window._this, window._this.showBadge(checkBox.checked));
-                    
+
                 if(checkBox.checked)
                 {
                     _prevSelected = values[0]+'_'+fid;
@@ -352,7 +352,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                         case "polyline" :
                             markerGeometry = graphic.geometry;
                             marker = new CartographicLineSymbol(
-                                CartographicLineSymbol.STYLE_SOLID, new Color([0, 127, 255]), 10, 
+                                CartographicLineSymbol.STYLE_SOLID, new Color([0, 127, 255]), 10,
                                 CartographicLineSymbol.CAP_ROUND,
                                 CartographicLineSymbol.JOIN_ROUND, 5);
                             break;
@@ -360,7 +360,7 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                             // if the graphic is a polygon
                             markerGeometry = graphic.geometry;
                             marker = new SimpleFillSymbol(
-                                SimpleFillSymbol.STYLE_SOLID, 
+                                SimpleFillSymbol.STYLE_SOLID,
                                 new SimpleLineSymbol(
                                     SimpleLineSymbol.STYLE_SOLID,
                                     new Color([0, 127, 255]), 3),
@@ -378,18 +378,18 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
                     dojo.query('.featureItem_'+_prevSelected).forEach(function(e) {
                         dojo.removeClass(e, 'showAttr');
                         dojo.addClass(e, 'hideAttr');
-                    });                        
+                    });
                     window._prevSelected = null;
                 }
             };
-            
+
 
             on(this.map, "extent-change", lang.hitch(this, this._reloadList), this);
-
+            var i18n = this.i18n;
             _getFeatureListItem = function(r, f, objectIdFieldName, layer, content, listTemplate) {
                 try {
                     var featureId = f.attributes[objectIdFieldName];
-                    var attributes = {_featureId:featureId, _layerId:r, _title:layer.infoTemplate.title(f), _content:content};
+                    var attributes = {_featureId:featureId, _layerId:r, _title:layer.infoTemplate.title(f), _content:content, _i18n: i18n};
                     lang.mixin(attributes, f.attributes);
                     var nulls = window.tasks[r].layer.fields.map(function(f){return f.name;});
                     var nullAttrs ={};
@@ -438,4 +438,3 @@ define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "es
     }
     return Widget;
 });
-

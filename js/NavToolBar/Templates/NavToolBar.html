@@ -1,61 +1,61 @@
-<div 
-	role="presentation" 
+<div
+	role="presentation"
 	style="height:auto; position: absolute;"
 	>
 
-	<div id="navToolBar" class="navToolBar bg" title="Zoom In">
-		<div 
-			id="navZoomIn" 
+	<div id="navToolBar" class="navToolBar bg" title="${i18n.map_control.zoom_in}">
+		<div
+			id="navZoomIn"
 			class="navBtn borderBottom" >
-			<div 
-				class="disabledBtn" style="display:none" 
+			<div
+				class="disabledBtn" style="display:none"
 				aria-label="Maximum Zoom In" role="button"></div>
-			<input 
-				type="image" 
-				src="images/icons_${iconColor}/plus${newIcons}.png" 
-				alt="Zoom In" 
-				title="Zoom In"
+			<input
+				type="image"
+				src="images/icons_${iconColor}/plus${newIcons}.png"
+				alt="${i18n.map_control.zoom_in}"
+				title="${i18n.map_control.zoom_in}"
 				>
 		</div>
 		<div id="navHome" class="navBtn borderBottom">
-			<div 
-				class="disabledBtn" style="display:none" 
+			<div
+				class="disabledBtn" style="display:none"
 				aria-label="At Default Extent" role="button"></div>
 		</div>
-		<div id="navZoomOut" class="navBtn borderBottom" title="Zoom Out">
-			<div 
-				class="disabledBtn" style="display:none" 
+		<div id="navZoomOut" class="navBtn borderBottom" title="${i18n.map_control.zoom_out}">
+			<div
+				class="disabledBtn" style="display:none"
 				aria-label="Maximum Zoom Out" role="button"></div>
-			<input 
-				type="image" 
-				src="images/icons_${iconColor}/minus${newIcons}.png" 
-				alt="Zoom Out" 
-				title="Zoom Out"
+			<input
+				type="image"
+				src="images/icons_${iconColor}/minus${newIcons}.png"
+				alt="${i18n.map_control.zoom_out}"
+				title="${i18n.map_control.zoom_out}"
 				>
 		</div>
 	</div>
-	
+
 	<div id="extendedNav">
 		<div id="extendedNavTools" class="navToolBar bg" style="margin-top:4px;">
 			<div id="extenderNav" class="navBtn" title="Extended Navigation">
-				<input 
+				<input
 					id="extenderNavCheckbox"
-					type="checkbox" 
+					type="checkbox"
 					>
-				<label 
+				<label
 					id="extenderNavLabel"
 					for="extenderNavCheckbox" tabindex=0>
-					<img 
+					<img
 						class="extenderNavExtend"
-						src="images/icons_${iconColor}/down.png" 
-						alt="Show Extended Navigation Tools" 
-						title="Show Extended Navigation Tools"
+						src="images/icons_${iconColor}/down.png"
+						alt="${i18n.map_control.show_extended_navigation_tools}"
+						title="${i18n.map_control.show_extended_navigation_tools}"
 						style="width: 24px;height: 12px; display:none;"/>
-					<img 
+					<img
 						class="extenderNavCollapse"
-						src="images/icons_${iconColor}/Up.png" 
-						alt="Hide Extended Navigation Tools" 
-						title="Hide Extended Navigation Tools"
+						src="images/icons_${iconColor}/Up.png"
+						alt="${i18n.map_control.hide_extended_navigation_tools}"
+						title="${i18n.map_control.hide_extended_navigation_tools}"
 						style="width: 24px;height: 12px; display:inline-block;"/>
 				</label>
 
@@ -65,49 +65,49 @@
 				<div id="navLocate" class="navBtn borderTop"></div>
 
 				<div id="navPrevNext" style="height: auto;">
-					<div id="navPrev" class="navBtn borderTop borderBottom" title="Previous Extent">
-						<div 
-							class="disabledBtn" style="display:none" 
+					<div id="navPrev" class="navBtn borderTop borderBottom" title="${i18n.map_control.previous_extent}">
+						<div
+							class="disabledBtn" style="display:none"
 							aria-label="Previous Extent, Disabled" role="button"></div>
-						<input 
-							type="image" 
-							src="images/icons_${iconColor}/prev.png" 
-							alt="Previous Extent" 
-							title="Previous Extent">
+						<input
+							type="image"
+							src="images/icons_${iconColor}/prev.png"
+							alt="${i18n.map_control.previous_extent}"
+							title="${i18n.map_control.previous_extent}">
 					</div>
-					<div id="navNext" class="navBtn" title="Next Extent">
-						<div 
-							class="disabledBtn" style="display:none" 
+					<div id="navNext" class="navBtn" title="${i18n.map_control.next_extent}">
+						<div
+							class="disabledBtn" style="display:none"
 							aria-label="Next Extent, Disabled" role="button" ></div>
-						<input 
-							type="image" 
-							src="images/icons_${iconColor}/next.png" 
-							alt="Next Extent" 
-							title="Next Extent">
+						<input
+							type="image"
+							src="images/icons_${iconColor}/next.png"
+							alt="${i18n.map_control.next_extent}"
+							title="${i18n.map_control.next_extent}">
 					</div>
 				</div>
 
 				<div id="ZoomTools" style="height: auto;">
-					<div id="navZoomInTool" class="navBtn borderTop borderBottom" title="Zoom In Tool">
-						<input 
-							type="image" 
-							src="images/icons_${iconColor}/ZoomPlus.png" 
-							alt="Zoom In Tool" 
-							title="Zoom In Tool">
+					<div id="navZoomInTool" class="navBtn borderTop borderBottom" title="${i18n.map_control.zoom_in_tool}">
+						<input
+							type="image"
+							src="images/icons_${iconColor}/ZoomPlus.png"
+							alt="${i18n.map_control.zoom_in_tool}"
+							title="${i18n.map_control.zoom_in_tool}">
 					</div>
-					<div id="navZoomOutTool" class="navBtn" title="Zoom Out Tool">
-						<input 
-							type="image" 
-							src="images/icons_${iconColor}/ZoomMinus.png" 
-							alt="Zoom Out Tool" 
-							title="Zoom Out Tool">
+					<div id="navZoomOutTool" class="navBtn" title="${i18n.map_control.zoom_out_tool}">
+						<input
+							type="image"
+							src="images/icons_${iconColor}/ZoomMinus.png"
+							alt="${i18n.map_control.zoom_out_tool}"
+							title="${i18n.map_control.zoom_out_tool}">
 					</div>
 				</div>
 				<!-- <div id="testBtn" class="navBtn borderTop borderBottom">
-					<input 
-						type="image" 
-						src="images/icon-cog.png" 
-						alt="Test" 
+					<input
+						type="image"
+						src="images/icon-cog.png"
+						alt="Test"
 						title="Test">
 				</div> -->
 			</div>

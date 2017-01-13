@@ -1,22 +1,22 @@
 define([
-    "dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "dojo/dom","esri/kernel", 
+    "dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dojo/has", "dojo/dom","esri/kernel",
     "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dojo/on",
     "dojo/query", "esri/toolbars/navigation", "dijit/registry",
-    "esri/dijit/HomeButton", "esri/dijit/LocateButton", 
+    "esri/dijit/HomeButton", "esri/dijit/LocateButton",
     "esri/symbols/SimpleLineSymbol", "esri/Color",
-    "dojo/text!application/NavToolBar/templates/NavToolBar.html", 
-    "dojo/dom-class", "dojo/dom-attr", "dojo/dom-style", 
-    "dojo/dom-construct", "dojo/_base/event", 
+    "dojo/text!application/NavToolBar/templates/NavToolBar.html",
+    "dojo/dom-class", "dojo/dom-attr", "dojo/dom-style",
+    "dojo/dom-construct", "dojo/_base/event",
     "dojo/NodeList-dom", "dojo/NodeList-traverse"
-    
+
     ], function (
         Evented, declare, lang, has, dom, esriNS,
-        _WidgetBase, _TemplatedMixin, on, 
+        _WidgetBase, _TemplatedMixin, on,
         query, Navigation, registry,
-        HomeButton, LocateButton, 
+        HomeButton, LocateButton,
         SimpleLineSymbol, Color,
-        NavToolBarTemplate, 
-        domClass, domAttr, domStyle, 
+        NavToolBarTemplate,
+        domClass, domAttr, domStyle,
         domConstruct, event
     ) {
     var Widget = declare("esri.dijit.NavToolBar", [_WidgetBase, _TemplatedMixin, Evented], {
@@ -34,7 +34,7 @@ define([
             var defaults = lang.mixin({}, this.options, options);
 
             this.domNode = srcRefNode;
-
+            
             this.set("map", defaults.map);
             this.set("navToolBar", defaults.navToolBar);
             this.set("nav", new Navigation(this.map));
@@ -53,7 +53,7 @@ define([
             }
 
         },
-        
+
         _init: function () {
             // this.map.showPanArrows(); //???
 
@@ -82,7 +82,7 @@ define([
                 dojo.removeAttr(homen, 'role');
                 var homeNode = dojo.query(".home")[0];
                 dojo.empty(homeNode);
-                var homeHint = "Default Extent";
+                var homeHint = this.i18n.map_control.default_extent; //"Default Extent";
 
                 var btnHome = domConstruct.create("input", {
                     type: 'image',
@@ -94,8 +94,8 @@ define([
                 dojo.destroy("navHome");
             }
 
-            var isLocationEnabled = !(!!window.chrome && !!window.chrome.webstore) || 
-                (window.location.protocol === "https:") || 
+            var isLocationEnabled = !(!!window.chrome && !!window.chrome.webstore) ||
+                (window.location.protocol === "https:") ||
                 (window.location.hostname === "localhost");
             if (has("locate") && isLocationEnabled) {
                 var geoLocate = new LocateButton({
@@ -205,7 +205,7 @@ define([
         },
 
         blurAll: function(text) {
-            if(text===undefined) 
+            if(text===undefined)
                 text='';
             var tmp = domConstruct.create("div", {tabindex:0, 'aria-label':text}, document.body);
             //document.body.appendChild(tmp);

@@ -47,6 +47,9 @@ define(
         "tooltips":{
         	"home": "Etendue par défaut",
         	"locate": "Rechercher mon site",
+          "features" : "Liste des fonctionnalités",
+          "filter" : "Filters",
+          "instructions": "Instructions",
         	"legend": "Légende",
         	"bookmarks": "Géosignets",
         	"layers": "Couches",
@@ -58,6 +61,19 @@ define(
         	"print": "Imprimer",
         	"details": "Détails",
         	"share": "Partager"
+        },
+        "map_control":{
+        	"default_extent": "Taille de la carte par défaut",
+          "pan_to": "Déplacer vers",
+          "zoom_to": "Agrandir",
+          "zoom_in": "Zoom avant",
+          "zoom_out": "Zoom arrière",
+          "show_extended_navigation_tools": "Show Extended Navigation Tools",
+          "hide_extended_navigation_tools": "Hide Extended Navigation Tools",
+          "previous_extent": "Previous Extent",
+          "next_extent": "Next Extent",
+          "zoom_in_tool": "Zoom In Tool",
+          "zoom_out_tool": "Zoom Out Tool"
         }
     })
 );

@@ -61,6 +61,19 @@ define({
         	"print": "Print",
         	"details": "Details",
         	"share": "Share"
+        },
+        "map_control":{
+        	"default_extent": "Default Extent",
+          "pan_to": "Pan To",
+          "zoom_to": "Zoom To",
+          "zoom_in": "Zoom In",
+          "zoom_out": "Zoom Out",
+          "show_extended_navigation_tools": "Show Extended Navigation Tools",
+          "hide_extended_navigation_tools": "Hide Extended Navigation Tools",
+          "previous_extent": "Previous Extent",
+          "next_extent": "Next Extent",
+          "zoom_in_tool": "Zoom In Tool",
+          "zoom_out_tool": "Zoom Out Tool"          
         }
     }),
 "ar": 1,
